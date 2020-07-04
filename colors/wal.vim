@@ -17,7 +17,11 @@ let g:colors_name = 'wal'
 
 " set t_Co=16
 hi Normal ctermbg=NONE ctermfg=7
-hi NonText ctermbg=NONE ctermfg=0
+
+" Highlight nontext like comments
+" Includes invisible characters like `listchars`
+hi NonText ctermbg=NONE ctermfg=8 cterm=NONE
+
 hi Comment ctermbg=NONE ctermfg=8
 hi Constant ctermbg=NONE ctermfg=3
 hi Error ctermbg=1 ctermfg=7
