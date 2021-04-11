@@ -16,11 +16,16 @@ let g:colors_name = 'wal'
 " highlight groups {{{
 
 " set t_Co=16
-hi Normal ctermbg=NONE ctermfg=7
+hi Normal ctermbg=233 ctermfg=7
+hi ColorColumn ctermbg=0
+
+" This is the cmdline in neovim
+" Does not exist in vim
+hi MsgArea ctermbg=0
 
 " Highlight nontext like comments
 " Includes invisible characters like `listchars`
-hi NonText ctermbg=NONE ctermfg=8 cterm=NONE
+hi NonText ctermbg=NONE ctermfg=0 cterm=NONE
 
 hi Comment ctermbg=NONE ctermfg=8
 hi Constant ctermbg=NONE ctermfg=3
@@ -44,8 +49,8 @@ hi TermCursorNC ctermbg=3 ctermfg=0
 hi VertSplit ctermbg=8 ctermfg=0
 hi Title ctermbg=NONE ctermfg=4
 hi CursorLine ctermbg=8 ctermfg=0
-hi LineNr ctermbg=NONE ctermfg=8
-hi CursorLineNr ctermbg=NONE ctermfg=8
+hi LineNr ctermbg=0 ctermfg=8
+hi CursorLineNr ctermbg=0 ctermfg=8
 hi helpLeadBlank ctermbg=NONE ctermfg=7
 hi helpNormal ctermbg=NONE ctermfg=7
 hi Visual ctermbg=0 ctermfg=15 cterm=reverse term=reverse
@@ -65,9 +70,9 @@ hi DiffText ctermbg=NONE ctermfg=4
 hi IncSearch ctermbg=0 ctermfg=1 cterm=reverse term=reverse
 hi Search ctermbg=3 ctermfg=0
 hi Directory ctermbg=NONE ctermfg=4
-hi ColorColumn ctermbg=4 ctermfg=0
-hi signColumn ctermbg=NONE ctermfg=4
 hi MatchParen ctermbg=NONE ctermfg=none cterm=italic,underline
+hi signColumn ctermbg=0 ctermfg=4
+hi SignColumn ctermbg=0 ctermfg=4
 hi ErrorMsg ctermbg=NONE ctermfg=8
 hi ModeMsg ctermbg=NONE ctermfg=2
 hi MoreMsg ctermbg=NONE ctermfg=2
@@ -172,6 +177,8 @@ hi rubyRegexpAnchor ctermbg=NONE ctermfg=7
     hi link rubyRegexpQuantifier rubyRegexpAnchor
 hi pythonOperator ctermbg=NONE ctermfg=5
 hi pythonFunction ctermbg=NONE ctermfg=4
+hi pythonBuiltinFunc ctermbg=NONE ctermfg=4
+hi pythonNone ctermbg=NONE ctermfg=4
 hi pythonRepeat ctermbg=NONE ctermfg=5
 hi pythonStatement ctermbg=NONE ctermfg=1 cterm=Bold
 hi pythonBuiltIn ctermbg=NONE ctermfg=4
@@ -180,15 +187,15 @@ hi phpComparison ctermbg=NONE ctermfg=7
 hi phpParent ctermbg=NONE ctermfg=7
 hi cOperator ctermbg=NONE ctermfg=6
 hi cPreCondit ctermbg=NONE ctermfg=5
-hi SignifySignAdd ctermbg=NONE ctermfg=2
-hi SignifySignChange ctermbg=NONE ctermfg=4
-hi SignifySignDelete ctermbg=NONE ctermfg=1
-hi NERDTreeDirSlash ctermbg=NONE ctermfg=4
-hi NERDTreeExecFile ctermbg=NONE ctermfg=7
-hi ALEErrorSign ctermbg=NONE ctermfg=1
-hi ALEWarningSign ctermbg=NONE ctermfg=3
-hi ALEError ctermbg=NONE ctermfg=1
-hi ALEWarning ctermbg=NONE ctermfg=3
+hi SignifySignAdd ctermbg=0 ctermfg=2
+hi SignifySignChange ctermbg=0 ctermfg=4
+hi SignifySignDelete ctermbg=0 ctermfg=1
+hi NERDTreeDirSlash ctermbg=0 ctermfg=4
+hi NERDTreeExecFile ctermbg=0 ctermfg=7
+hi ALEErrorSign ctermbg=0 ctermfg=1
+hi ALEWarningSign ctermbg=0 ctermfg=3
+hi ALEError ctermbg=0 ctermfg=1
+hi ALEWarning ctermbg=0 ctermfg=3
 
 " }}}
 
@@ -197,3 +204,7 @@ hi ALEWarning ctermbg=NONE ctermfg=3
 let g:limelight_conceal_ctermfg = 8
 
 " }}}
+
+highlight GitGutterAdd ctermbg=0
+highlight GitGutterChange ctermbg=0
+highlight GitGutterDelete ctermbg=0
