@@ -65,9 +65,9 @@ hi DiffText ctermbg=NONE ctermfg=4
 hi IncSearch ctermbg=0 ctermfg=1 cterm=reverse term=reverse
 hi Search ctermbg=3 ctermfg=0
 hi Directory ctermbg=NONE ctermfg=4
-hi MatchParen ctermbg=none ctermfg=none
 hi ColorColumn ctermbg=4 ctermfg=0
 hi signColumn ctermbg=NONE ctermfg=4
+hi MatchParen ctermbg=NONE ctermfg=none cterm=italic,underline
 hi ErrorMsg ctermbg=NONE ctermfg=8
 hi ModeMsg ctermbg=NONE ctermfg=2
 hi MoreMsg ctermbg=NONE ctermfg=2
