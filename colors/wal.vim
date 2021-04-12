@@ -7,7 +7,7 @@ hi clear
 set background=dark
 
 if exists('syntax_on')
-    syntax reset
+	syntax reset
 endif
 
 " Colorscheme name
@@ -105,12 +105,12 @@ hi SpecialChar ctermbg=NONE ctermfg=5
 hi Tag ctermbg=NONE ctermfg=3
 hi Typedef ctermbg=NONE ctermfg=3
 hi vimUserCommand ctermbg=NONE ctermfg=1 cterm=BOLD
-    hi link vimMap vimUserCommand
-    hi link vimLet vimUserCommand
-    hi link vimCommand vimUserCommand
-    hi link vimFTCmd vimUserCommand
-    hi link vimAutoCmd vimUserCommand
-    hi link vimNotFunc vimUserCommand
+	hi link vimMap vimUserCommand
+	hi link vimLet vimUserCommand
+	hi link vimCommand vimUserCommand
+	hi link vimFTCmd vimUserCommand
+	hi link vimAutoCmd vimUserCommand
+	hi link vimNotFunc vimUserCommand
 hi vimNotation ctermbg=NONE ctermfg=4
 hi vimMapModKey ctermbg=NONE ctermfg=4
 hi vimBracket ctermbg=NONE ctermfg=15
@@ -122,26 +122,26 @@ hi htmlEndTag ctermbg=NONE ctermfg=15
 hi htmlTag ctermbg=NONE ctermfg=15
 hi htmlTagName ctermbg=NONE ctermfg=1 cterm=BOLD
 hi htmlH1 ctermbg=NONE ctermfg=15
-    hi link htmlH2 htmlH1
-    hi link htmlH3 htmlH1
-    hi link htmlH4 htmlH1
-    hi link htmlH5 htmlH1
-    hi link htmlH6 htmlH1
+	hi link htmlH2 htmlH1
+	hi link htmlH3 htmlH1
+	hi link htmlH4 htmlH1
+	hi link htmlH5 htmlH1
+	hi link htmlH6 htmlH1
 hi cssMultiColumnAttr ctermbg=NONE ctermfg=2
-    hi link cssFontAttr cssMultiColumnAttr
-    hi link cssFlexibleBoxAttr cssMultiColumnAttr
+	hi link cssFontAttr cssMultiColumnAttr
+	hi link cssFlexibleBoxAttr cssMultiColumnAttr
 hi cssBraces ctermbg=NONE ctermfg=15
-    hi link cssAttrComma cssBraces
+	hi link cssAttrComma cssBraces
 hi cssValueLength ctermbg=NONE ctermfg=15
 hi cssUnitDecorators ctermbg=NONE ctermfg=15
 hi cssValueNumber ctermbg=NONE ctermfg=15
-    hi link cssValueLength cssValueNumber
+	hi link cssValueLength cssValueNumber
 hi cssNoise ctermbg=NONE ctermfg=7
 hi cssTagName ctermbg=NONE ctermfg=1
 hi cssFunctionName ctermbg=NONE ctermfg=4
 hi scssSelectorChar ctermbg=NONE ctermfg=15
 hi scssAttribute ctermbg=NONE ctermfg=15
-    hi link scssDefinition cssNoise
+	hi link scssDefinition cssNoise
 hi sassidChar ctermbg=NONE ctermfg=1
 hi sassClassChar ctermbg=NONE ctermfg=5
 hi sassInclude ctermbg=NONE ctermfg=5
@@ -151,13 +151,13 @@ hi javaScript ctermbg=NONE ctermfg=15
 hi javaScriptBraces ctermbg=NONE ctermfg=15
 hi javaScriptNumber ctermbg=NONE ctermfg=5
 hi markdownH1 ctermbg=NONE ctermfg=15
-    hi link markdownH2 markdownH1
-    hi link markdownH3 markdownH1
-    hi link markdownH4 markdownH1
-    hi link markdownH5 markdownH1
-    hi link markdownH6 markdownH1
+	hi link markdownH2 markdownH1
+	hi link markdownH3 markdownH1
+	hi link markdownH4 markdownH1
+	hi link markdownH5 markdownH1
+	hi link markdownH6 markdownH1
 hi markdownAutomaticLink ctermbg=NONE ctermfg=2 cterm=underline
-    hi link markdownUrl markdownAutomaticLink
+	hi link markdownUrl markdownAutomaticLink
 hi markdownError ctermbg=NONE ctermfg=15
 hi markdownCode ctermbg=NONE ctermfg=3
 hi markdownCodeBlock ctermbg=NONE ctermfg=3
@@ -178,7 +178,7 @@ hi rubyRegexp ctermbg=NONE ctermfg=6
 hi rubySymbol ctermbg=NONE ctermfg=2
 hi rubyTodo ctermbg=NONE ctermfg=7
 hi rubyRegexpAnchor ctermbg=NONE ctermfg=15
-    hi link rubyRegexpQuantifier rubyRegexpAnchor
+	hi link rubyRegexpQuantifier rubyRegexpAnchor
 hi pythonOperator ctermbg=NONE ctermfg=5
 hi pythonFunction ctermbg=NONE ctermfg=4
 hi pythonBuiltinFunc ctermbg=NONE ctermfg=4
