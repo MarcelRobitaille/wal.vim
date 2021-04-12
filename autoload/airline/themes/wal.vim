@@ -25,7 +25,7 @@ let g:airline#themes#wal#palette.replace = airline#themes#generate_color_map(s:R
 let g:airline#themes#wal#palette.accents = { 'red': [ '', '', 0, 2, 'BOLD' ] }
 
 " Inactive mode
-let s:IN1 = [ '', '', 0, 8 ]
+let s:IN1 = [ '', '', 0, 7 ]
 let s:IN2 = [ '', '', 0, 0 ]
 
 let s:IA = [ s:IN1[1], s:IN2[1], s:IN1[3], s:IN2[3], '' ]
