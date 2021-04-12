@@ -13,193 +13,213 @@ endif
 " Colorscheme name
 let g:colors_name = 'wal'
 
+
 " highlight groups {{{
 
-" set t_Co=16
-hi Normal ctermbg=8 ctermfg=15
-hi NormalFloat ctermbg=8 ctermfg=15
-hi NormalNc ctermbg=8 ctermfg=15
-hi ColorColumn ctermbg=0
+function! SetHighlight(string)
+	let l:guioptions = ' '
+
+	if exists('g:wal_colors') && len(g:wal_colors) >= 16
+		for part in split(a:string)
+			let code = substitute(part, '.*=', '', '')
+			let part = substitute(part, code, '', '')
+			for match in ['ctermbg=', 'ctermfg=', 'cterm=']
+				if part == match
+					let part = substitute(part, 'cterm', 'gui', '')
+					let l:guioptions .= ' ' . part .
+								\ get(g:wal_colors, code, code)
+				endif
+			endfor
+		endfor
+	endif
+
+	execute a:string . l:guioptions
+endfunction
+
+call SetHighlight('hi Normal ctermbg=8 ctermfg=15')
+call SetHighlight('hi NormalFloat ctermbg=8 ctermfg=15')
+call SetHighlight('hi NormalNc ctermbg=8 ctermfg=15')
+call SetHighlight('hi ColorColumn ctermbg=0')
 
 " This is the cmdline in neovim
 " Does not exist in vim
-hi MsgArea ctermbg=0
+call SetHighlight('hi MsgArea ctermbg=0')
 
 " Highlight nontext like comments
 " Includes invisible characters like `listchars`
-hi NonText ctermbg=NONE ctermfg=0 cterm=NONE
+call SetHighlight('hi NonText ctermbg=NONE ctermfg=0 cterm=NONE')
 
-hi EndOfBuffer ctermbg=0 ctermfg=7
+call SetHighlight('hi EndOfBuffer ctermbg=0 ctermfg=7')
 
-hi Comment ctermbg=NONE ctermfg=7
-hi Constant ctermbg=NONE ctermfg=3
-hi Error ctermbg=1 ctermfg=15
-hi Identifier ctermbg=NONE ctermfg=1 cterm=BOLD
-hi Ignore ctermbg=7 ctermfg=0
-hi PreProc ctermbg=NONE ctermfg=3
-hi Special ctermbg=NONE ctermfg=6
-hi Statement ctermbg=NONE ctermfg=1
-hi String ctermbg=NONE ctermfg=2
-hi Number ctermbg=NONE ctermfg=3
-hi Todo ctermbg=2 ctermfg=0
-hi Type ctermbg=NONE ctermfg=3
-hi Underlined ctermbg=NONE ctermfg=1 cterm=underline
-hi StatusLine ctermbg=15 ctermfg=0
-hi StatusLineNC ctermbg=7 ctermfg=0
-hi TabLine ctermbg=NONE ctermfg=7
-hi TabLineFill ctermbg=NONE ctermfg=7
-hi TabLineSel ctermbg=4 ctermfg=0
-hi TermCursorNC ctermbg=3 ctermfg=0
-hi VertSplit ctermbg=7 ctermfg=0
-hi Title ctermbg=NONE ctermfg=4
-hi CursorLine ctermbg=7 ctermfg=0
-hi LineNr ctermbg=0 ctermfg=7
-hi CursorLineNr ctermbg=0 ctermfg=7
-hi helpLeadBlank ctermbg=NONE ctermfg=15
-hi helpNormal ctermbg=NONE ctermfg=15
-hi Visual ctermbg=0 ctermfg=15 cterm=reverse term=reverse
-hi VisualNOS ctermbg=NONE ctermfg=1
-hi Pmenu ctermbg=7 ctermfg=15
-hi PmenuSbar ctermbg=6 ctermfg=15
-hi PmenuSel ctermbg=4 ctermfg=0
-hi PmenuThumb ctermbg=7 ctermfg=7
-hi FoldColumn ctermbg=NONE ctermfg=15
-hi Folded ctermbg=NONE ctermfg=7
-hi WildMenu ctermbg=2 ctermfg=0
-hi SpecialKey ctermbg=NONE ctermfg=7
-hi DiffAdd ctermbg=NONE ctermfg=2
-hi DiffChange ctermbg=NONE ctermfg=7
-hi DiffDelete ctermbg=NONE ctermfg=1
-hi DiffText ctermbg=NONE ctermfg=4
-hi IncSearch ctermbg=0 ctermfg=1 cterm=reverse term=reverse
-hi Search ctermbg=3 ctermfg=0
-hi Directory ctermbg=NONE ctermfg=4
-hi MatchParen ctermbg=NONE ctermfg=none cterm=italic,underline
-hi signColumn ctermbg=0 ctermfg=4
-hi SignColumn ctermbg=0 ctermfg=4
-hi ErrorMsg ctermbg=NONE ctermfg=7
-hi ModeMsg ctermbg=NONE ctermfg=2
-hi MoreMsg ctermbg=NONE ctermfg=2
-hi Question ctermbg=NONE ctermfg=4
-hi WarningMsg ctermbg=1 ctermfg=0
-hi Cursor ctermbg=NONE ctermfg=7
-hi Structure ctermbg=NONE ctermfg=5
-hi CursorColumn ctermbg=7 ctermfg=15
-hi ModeMsg ctermbg=NONE ctermfg=15
-hi SpellBad ctermbg=NONE ctermfg=1 cterm=underline
-hi SpellCap ctermbg=NONE ctermfg=4 cterm=underline
-hi SpellLocal ctermbg=NONE ctermfg=5 cterm=underline
-hi SpellRare ctermbg=NONE ctermfg=6 cterm=underline
-hi Boolean ctermbg=NONE ctermfg=5
-hi Character ctermbg=NONE ctermfg=1
-hi Conditional ctermbg=NONE ctermfg=5
-hi Define ctermbg=NONE ctermfg=5
-hi Delimiter ctermbg=NONE ctermfg=5
-hi Float ctermbg=NONE ctermfg=5
-hi Include ctermbg=NONE ctermfg=4
-hi Keyword ctermbg=NONE ctermfg=5
-hi Label ctermbg=NONE ctermfg=3
-hi Operator ctermbg=NONE ctermfg=15
-hi Repeat ctermbg=NONE ctermfg=3
-hi SpecialChar ctermbg=NONE ctermfg=5
-hi Tag ctermbg=NONE ctermfg=3
-hi Typedef ctermbg=NONE ctermfg=3
-hi vimUserCommand ctermbg=NONE ctermfg=1 cterm=BOLD
+call SetHighlight('hi Comment ctermbg=NONE ctermfg=7')
+call SetHighlight('hi Constant ctermbg=NONE ctermfg=3')
+call SetHighlight('hi Error ctermbg=1 ctermfg=15')
+call SetHighlight('hi Identifier ctermbg=NONE ctermfg=1 cterm=BOLD')
+call SetHighlight('hi Ignore ctermbg=7 ctermfg=0')
+call SetHighlight('hi PreProc ctermbg=NONE ctermfg=3')
+call SetHighlight('hi Special ctermbg=NONE ctermfg=6')
+call SetHighlight('hi Statement ctermbg=NONE ctermfg=1')
+call SetHighlight('hi String ctermbg=NONE ctermfg=2')
+call SetHighlight('hi Number ctermbg=NONE ctermfg=3')
+call SetHighlight('hi Todo ctermbg=2 ctermfg=0')
+call SetHighlight('hi Type ctermbg=NONE ctermfg=3')
+call SetHighlight('hi Underlined ctermbg=NONE ctermfg=1 cterm=underline')
+call SetHighlight('hi StatusLine ctermbg=15 ctermfg=0')
+call SetHighlight('hi StatusLineNC ctermbg=7 ctermfg=0')
+call SetHighlight('hi TabLine ctermbg=NONE ctermfg=7')
+call SetHighlight('hi TabLineFill ctermbg=NONE ctermfg=7')
+call SetHighlight('hi TabLineSel ctermbg=4 ctermfg=0')
+call SetHighlight('hi TermCursorNC ctermbg=3 ctermfg=0')
+call SetHighlight('hi VertSplit ctermbg=7 ctermfg=0')
+call SetHighlight('hi Title ctermbg=NONE ctermfg=4')
+call SetHighlight('hi CursorLine ctermbg=7 ctermfg=0')
+call SetHighlight('hi LineNr ctermbg=0 ctermfg=7')
+call SetHighlight('hi CursorLineNr ctermbg=0 ctermfg=7')
+call SetHighlight('hi helpLeadBlank ctermbg=NONE ctermfg=15')
+call SetHighlight('hi helpNormal ctermbg=NONE ctermfg=15')
+call SetHighlight('hi Visual ctermbg=0 ctermfg=15 cterm=reverse term=reverse')
+call SetHighlight('hi VisualNOS ctermbg=NONE ctermfg=1')
+call SetHighlight('hi Pmenu ctermbg=7 ctermfg=15')
+call SetHighlight('hi PmenuSbar ctermbg=6 ctermfg=15')
+call SetHighlight('hi PmenuSel ctermbg=4 ctermfg=0')
+call SetHighlight('hi PmenuThumb ctermbg=7 ctermfg=7')
+call SetHighlight('hi FoldColumn ctermbg=NONE ctermfg=15')
+call SetHighlight('hi Folded ctermbg=NONE ctermfg=7')
+call SetHighlight('hi WildMenu ctermbg=2 ctermfg=0')
+call SetHighlight('hi SpecialKey ctermbg=NONE ctermfg=7')
+call SetHighlight('hi DiffAdd ctermbg=NONE ctermfg=2')
+call SetHighlight('hi DiffChange ctermbg=NONE ctermfg=7')
+call SetHighlight('hi DiffDelete ctermbg=NONE ctermfg=1')
+call SetHighlight('hi DiffText ctermbg=NONE ctermfg=4')
+call SetHighlight('hi IncSearch ctermbg=0 ctermfg=1 cterm=reverse term=reverse')
+call SetHighlight('hi Search ctermbg=3 ctermfg=0')
+call SetHighlight('hi Directory ctermbg=NONE ctermfg=4')
+call SetHighlight('hi MatchParen ctermbg=NONE ctermfg=none cterm=italic,underline')
+call SetHighlight('hi signColumn ctermbg=0 ctermfg=4')
+call SetHighlight('hi SignColumn ctermbg=0 ctermfg=4')
+call SetHighlight('hi ErrorMsg ctermbg=NONE ctermfg=7')
+call SetHighlight('hi ModeMsg ctermbg=NONE ctermfg=2')
+call SetHighlight('hi MoreMsg ctermbg=NONE ctermfg=2')
+call SetHighlight('hi Question ctermbg=NONE ctermfg=4')
+call SetHighlight('hi WarningMsg ctermbg=1 ctermfg=0')
+call SetHighlight('hi Cursor ctermbg=NONE ctermfg=7')
+call SetHighlight('hi Structure ctermbg=NONE ctermfg=5')
+call SetHighlight('hi CursorColumn ctermbg=7 ctermfg=15')
+call SetHighlight('hi ModeMsg ctermbg=NONE ctermfg=15')
+call SetHighlight('hi SpellBad ctermbg=NONE ctermfg=1 cterm=underline')
+call SetHighlight('hi SpellCap ctermbg=NONE ctermfg=4 cterm=underline')
+call SetHighlight('hi SpellLocal ctermbg=NONE ctermfg=5 cterm=underline')
+call SetHighlight('hi SpellRare ctermbg=NONE ctermfg=6 cterm=underline')
+call SetHighlight('hi Boolean ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Character ctermbg=NONE ctermfg=1')
+call SetHighlight('hi Conditional ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Define ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Delimiter ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Float ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Include ctermbg=NONE ctermfg=4')
+call SetHighlight('hi Keyword ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Label ctermbg=NONE ctermfg=3')
+call SetHighlight('hi Operator ctermbg=NONE ctermfg=15')
+call SetHighlight('hi Repeat ctermbg=NONE ctermfg=3')
+call SetHighlight('hi SpecialChar ctermbg=NONE ctermfg=5')
+call SetHighlight('hi Tag ctermbg=NONE ctermfg=3')
+call SetHighlight('hi Typedef ctermbg=NONE ctermfg=3')
+call SetHighlight('hi vimUserCommand ctermbg=NONE ctermfg=1 cterm=BOLD')
 	hi link vimMap vimUserCommand
 	hi link vimLet vimUserCommand
 	hi link vimCommand vimUserCommand
 	hi link vimFTCmd vimUserCommand
 	hi link vimAutoCmd vimUserCommand
 	hi link vimNotFunc vimUserCommand
-hi vimNotation ctermbg=NONE ctermfg=4
-hi vimMapModKey ctermbg=NONE ctermfg=4
-hi vimBracket ctermbg=NONE ctermfg=15
-hi vimCommentString ctermbg=NONE ctermfg=7
-hi htmlLink ctermbg=NONE ctermfg=1 cterm=underline
-hi htmlBold ctermbg=NONE ctermfg=3 cterm=BOLD
-hi htmlItalic ctermbg=NONE ctermfg=5
-hi htmlEndTag ctermbg=NONE ctermfg=15
-hi htmlTag ctermbg=NONE ctermfg=15
-hi htmlTagName ctermbg=NONE ctermfg=1 cterm=BOLD
-hi htmlH1 ctermbg=NONE ctermfg=15
+call SetHighlight('hi vimNotation ctermbg=NONE ctermfg=4')
+call SetHighlight('hi vimMapModKey ctermbg=NONE ctermfg=4')
+call SetHighlight('hi vimBracket ctermbg=NONE ctermfg=15')
+call SetHighlight('hi vimCommentString ctermbg=NONE ctermfg=7')
+call SetHighlight('hi htmlLink ctermbg=NONE ctermfg=1 cterm=underline')
+call SetHighlight('hi htmlBold ctermbg=NONE ctermfg=3 cterm=BOLD')
+call SetHighlight('hi htmlItalic ctermbg=NONE ctermfg=5')
+call SetHighlight('hi htmlEndTag ctermbg=NONE ctermfg=15')
+call SetHighlight('hi htmlTag ctermbg=NONE ctermfg=15')
+call SetHighlight('hi htmlTagName ctermbg=NONE ctermfg=1 cterm=BOLD')
+call SetHighlight('hi htmlH1 ctermbg=NONE ctermfg=15')
 	hi link htmlH2 htmlH1
 	hi link htmlH3 htmlH1
 	hi link htmlH4 htmlH1
 	hi link htmlH5 htmlH1
 	hi link htmlH6 htmlH1
-hi cssMultiColumnAttr ctermbg=NONE ctermfg=2
+call SetHighlight('hi cssMultiColumnAttr ctermbg=NONE ctermfg=2')
 	hi link cssFontAttr cssMultiColumnAttr
 	hi link cssFlexibleBoxAttr cssMultiColumnAttr
-hi cssBraces ctermbg=NONE ctermfg=15
+call SetHighlight('hi cssBraces ctermbg=NONE ctermfg=15')
 	hi link cssAttrComma cssBraces
-hi cssValueLength ctermbg=NONE ctermfg=15
-hi cssUnitDecorators ctermbg=NONE ctermfg=15
-hi cssValueNumber ctermbg=NONE ctermfg=15
+call SetHighlight('hi cssValueLength ctermbg=NONE ctermfg=15')
+call SetHighlight('hi cssUnitDecorators ctermbg=NONE ctermfg=15')
+call SetHighlight('hi cssValueNumber ctermbg=NONE ctermfg=15')
 	hi link cssValueLength cssValueNumber
-hi cssNoise ctermbg=NONE ctermfg=7
-hi cssTagName ctermbg=NONE ctermfg=1
-hi cssFunctionName ctermbg=NONE ctermfg=4
-hi scssSelectorChar ctermbg=NONE ctermfg=15
-hi scssAttribute ctermbg=NONE ctermfg=15
+call SetHighlight('hi cssNoise ctermbg=NONE ctermfg=7')
+call SetHighlight('hi cssTagName ctermbg=NONE ctermfg=1')
+call SetHighlight('hi cssFunctionName ctermbg=NONE ctermfg=4')
+call SetHighlight('hi scssSelectorChar ctermbg=NONE ctermfg=15')
+call SetHighlight('hi scssAttribute ctermbg=NONE ctermfg=15')
 	hi link scssDefinition cssNoise
-hi sassidChar ctermbg=NONE ctermfg=1
-hi sassClassChar ctermbg=NONE ctermfg=5
-hi sassInclude ctermbg=NONE ctermfg=5
-hi sassMixing ctermbg=NONE ctermfg=5
-hi sassMixinName ctermbg=NONE ctermfg=4
-hi javaScript ctermbg=NONE ctermfg=15
-hi javaScriptBraces ctermbg=NONE ctermfg=15
-hi javaScriptNumber ctermbg=NONE ctermfg=5
-hi markdownH1 ctermbg=NONE ctermfg=15
+call SetHighlight('hi sassidChar ctermbg=NONE ctermfg=1')
+call SetHighlight('hi sassClassChar ctermbg=NONE ctermfg=5')
+call SetHighlight('hi sassInclude ctermbg=NONE ctermfg=5')
+call SetHighlight('hi sassMixing ctermbg=NONE ctermfg=5')
+call SetHighlight('hi sassMixinName ctermbg=NONE ctermfg=4')
+call SetHighlight('hi javaScript ctermbg=NONE ctermfg=15')
+call SetHighlight('hi javaScriptBraces ctermbg=NONE ctermfg=15')
+call SetHighlight('hi javaScriptNumber ctermbg=NONE ctermfg=5')
+call SetHighlight('hi markdownH1 ctermbg=NONE ctermfg=15')
 	hi link markdownH2 markdownH1
 	hi link markdownH3 markdownH1
 	hi link markdownH4 markdownH1
 	hi link markdownH5 markdownH1
 	hi link markdownH6 markdownH1
-hi markdownAutomaticLink ctermbg=NONE ctermfg=2 cterm=underline
+call SetHighlight('hi markdownAutomaticLink ctermbg=NONE ctermfg=2 cterm=underline')
 	hi link markdownUrl markdownAutomaticLink
-hi markdownError ctermbg=NONE ctermfg=15
-hi markdownCode ctermbg=NONE ctermfg=3
-hi markdownCodeBlock ctermbg=NONE ctermfg=3
-hi markdownCodeDelimiter ctermbg=NONE ctermfg=5
-hi markdownItalic cterm=Italic
-hi markdownBold cterm=Bold
-hi xdefaultsValue ctermbg=NONE ctermfg=15
-hi rubyInclude ctermbg=NONE ctermfg=4
-hi rubyDefine ctermbg=NONE ctermfg=5
-hi rubyFunction ctermbg=NONE ctermfg=4
-hi rubyStringDelimiter ctermbg=NONE ctermfg=2
-hi rubyInteger ctermbg=NONE ctermfg=3
-hi rubyAttribute ctermbg=NONE ctermfg=4
-hi rubyConstant ctermbg=NONE ctermfg=3
-hi rubyInterpolation ctermbg=NONE ctermfg=2
-hi rubyInterpolationDelimiter ctermbg=NONE ctermfg=3
-hi rubyRegexp ctermbg=NONE ctermfg=6
-hi rubySymbol ctermbg=NONE ctermfg=2
-hi rubyTodo ctermbg=NONE ctermfg=7
-hi rubyRegexpAnchor ctermbg=NONE ctermfg=15
+call SetHighlight('hi markdownError ctermbg=NONE ctermfg=15')
+call SetHighlight('hi markdownCode ctermbg=NONE ctermfg=3')
+call SetHighlight('hi markdownCodeBlock ctermbg=NONE ctermfg=3')
+call SetHighlight('hi markdownCodeDelimiter ctermbg=NONE ctermfg=5')
+call SetHighlight('hi markdownItalic cterm=Italic')
+call SetHighlight('hi markdownBold cterm=Bold')
+call SetHighlight('hi xdefaultsValue ctermbg=NONE ctermfg=15')
+call SetHighlight('hi rubyInclude ctermbg=NONE ctermfg=4')
+call SetHighlight('hi rubyDefine ctermbg=NONE ctermfg=5')
+call SetHighlight('hi rubyFunction ctermbg=NONE ctermfg=4')
+call SetHighlight('hi rubyStringDelimiter ctermbg=NONE ctermfg=2')
+call SetHighlight('hi rubyInteger ctermbg=NONE ctermfg=3')
+call SetHighlight('hi rubyAttribute ctermbg=NONE ctermfg=4')
+call SetHighlight('hi rubyConstant ctermbg=NONE ctermfg=3')
+call SetHighlight('hi rubyInterpolation ctermbg=NONE ctermfg=2')
+call SetHighlight('hi rubyInterpolationDelimiter ctermbg=NONE ctermfg=3')
+call SetHighlight('hi rubyRegexp ctermbg=NONE ctermfg=6')
+call SetHighlight('hi rubySymbol ctermbg=NONE ctermfg=2')
+call SetHighlight('hi rubyTodo ctermbg=NONE ctermfg=7')
+call SetHighlight('hi rubyRegexpAnchor ctermbg=NONE ctermfg=15')
 	hi link rubyRegexpQuantifier rubyRegexpAnchor
-hi pythonOperator ctermbg=NONE ctermfg=5
-hi pythonFunction ctermbg=NONE ctermfg=4
-hi pythonBuiltinFunc ctermbg=NONE ctermfg=4
-hi pythonNone ctermbg=NONE ctermfg=4
-hi pythonRepeat ctermbg=NONE ctermfg=5
-hi pythonStatement ctermbg=NONE ctermfg=1 cterm=Bold
-hi pythonBuiltIn ctermbg=NONE ctermfg=4
-hi phpMemberSelector ctermbg=NONE ctermfg=15
-hi phpComparison ctermbg=NONE ctermfg=15
-hi phpParent ctermbg=NONE ctermfg=15
-hi cOperator ctermbg=NONE ctermfg=6
-hi cPreCondit ctermbg=NONE ctermfg=5
-hi SignifySignAdd ctermbg=0 ctermfg=2
-hi SignifySignChange ctermbg=0 ctermfg=4
-hi SignifySignDelete ctermbg=0 ctermfg=1
-hi NERDTreeDirSlash ctermbg=0 ctermfg=4
-hi NERDTreeExecFile ctermbg=0 ctermfg=15
-hi ALEErrorSign ctermbg=0 ctermfg=1
-hi ALEWarningSign ctermbg=0 ctermfg=3
-hi ALEError ctermbg=0 ctermfg=1
-hi ALEWarning ctermbg=0 ctermfg=3
+call SetHighlight('hi pythonOperator ctermbg=NONE ctermfg=5')
+call SetHighlight('hi pythonFunction ctermbg=NONE ctermfg=4')
+call SetHighlight('hi pythonBuiltinFunc ctermbg=NONE ctermfg=4')
+call SetHighlight('hi pythonNone ctermbg=NONE ctermfg=4')
+call SetHighlight('hi pythonRepeat ctermbg=NONE ctermfg=5')
+call SetHighlight('hi pythonStatement ctermbg=NONE ctermfg=1 cterm=Bold')
+call SetHighlight('hi pythonBuiltIn ctermbg=NONE ctermfg=4')
+call SetHighlight('hi phpMemberSelector ctermbg=NONE ctermfg=15')
+call SetHighlight('hi phpComparison ctermbg=NONE ctermfg=15')
+call SetHighlight('hi phpParent ctermbg=NONE ctermfg=15')
+call SetHighlight('hi cOperator ctermbg=NONE ctermfg=6')
+call SetHighlight('hi cPreCondit ctermbg=NONE ctermfg=5')
+call SetHighlight('hi SignifySignAdd ctermbg=0 ctermfg=2')
+call SetHighlight('hi SignifySignChange ctermbg=0 ctermfg=4')
+call SetHighlight('hi SignifySignDelete ctermbg=0 ctermfg=1')
+call SetHighlight('hi NERDTreeDirSlash ctermbg=0 ctermfg=4')
+call SetHighlight('hi NERDTreeExecFile ctermbg=0 ctermfg=15')
+call SetHighlight('hi ALEErrorSign ctermbg=0 ctermfg=1')
+call SetHighlight('hi ALEWarningSign ctermbg=0 ctermfg=3')
+call SetHighlight('hi ALEError ctermbg=0 ctermfg=1')
+call SetHighlight('hi ALEWarning ctermbg=0 ctermfg=3')
 
 " }}}
 
@@ -209,6 +229,6 @@ let g:limelight_conceal_ctermfg = 7
 
 " }}}
 
-highlight GitGutterAdd ctermbg=0
-highlight GitGutterChange ctermbg=0
-highlight GitGutterDelete ctermbg=0
+call SetHighlight('hi GitGutterAdd ctermbg=0')
+call SetHighlight('hi GitGutterChange ctermbg=0')
+call SetHighlight('hi GitGutterDelete ctermbg=0')
