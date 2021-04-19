@@ -36,20 +36,30 @@ function! SetHighlight(string)
 	execute a:string . l:guioptions
 endfunction
 
-call SetHighlight('hi Normal ctermbg=NONE ctermfg=7')
+call SetHighlight('hi Normal ctermbg=0 ctermfg=7')
 call SetHighlight('hi NormalFloat ctermbg=0 ctermfg=7')
 call SetHighlight('hi NormalNc ctermbg=0 ctermfg=7')
-call SetHighlight('hi ColorColumn ctermbg=0 guibg=NONE')
+
+" "Box-in" the nromal content window by seting it as a darker colour to
+" everything else
+" This is nice to see the textwidth in a prettier way than a single vertical
+" line
+" Here, I am using 1000 as a hack
+" Turns out giving vim a color > 255 results in terminal background color
+
+" Make everything past textwidth have the same background as terminal
+call SetHighlight('hi ColorColumn ctermbg=1000 guibg=NONE')
 
 " This is the cmdline in neovim
 " Does not exist in vim
-call SetHighlight('hi MsgArea ctermbg=NONE')
+call SetHighlight('hi MsgArea ctermbg=1000')
+
+" Below the end of the file (nvim and vim>=8)
+call SetHighlight('hi EndOfBuffer ctermbg=1000 ctermfg=8')
 
 " Highlight nontext like comments
 " Includes invisible characters like `listchars`
 call SetHighlight('hi NonText ctermbg=NONE ctermfg=0 cterm=NONE')
-
-call SetHighlight('hi EndOfBuffer ctermbg=NONE ctermfg=7')
 
 call SetHighlight('hi Comment ctermbg=NONE ctermfg=8')
 call SetHighlight('hi Constant ctermbg=NONE ctermfg=3')
