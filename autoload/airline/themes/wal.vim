@@ -56,7 +56,7 @@ let g:airline#themes#wal#palette.tabline = {
       \ 'airline_tabmod':  [ get(g:wal_colors, 232, ''), get(g:wal_colors, 4, ''), 232, 4, 'BOLD' ]
 \ }
 
-if !get(g:, 'loaded_ctrlp', 1000)
+if !get(g:, 'loaded_ctrlp', 'NONE')
   finish
 endif
 
