@@ -38,6 +38,7 @@ endfunction
 
 call SetHighlight('hi Normal ctermbg=0 ctermfg=7')
 call SetHighlight('hi NormalFloat ctermbg=0 ctermfg=7')
+call SetHighlight('hi FloatBorder ctermbg=NONE ctermfg=7')
 call SetHighlight('hi NormalNc ctermbg=0 ctermfg=7')
 
 " "Box-in" the nromal content window by seting it as a darker colour to
